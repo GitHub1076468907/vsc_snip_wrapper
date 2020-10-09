@@ -84,5 +84,12 @@
 		"mocha": "^8.1.3",
 		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0"
-	}
+	},
+	"bugs": {
+		"url": "https://github.com/GitHub1076468907/vsc_snip_wrapper/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/GitHub1076468907/vsc_snip_wrapper"
+	},
 }
