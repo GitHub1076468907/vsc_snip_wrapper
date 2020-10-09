@@ -1,0 +1,88 @@
+{
+	"name": "snippets",
+	"displayName": "snippets_wrapper",
+	"description": "get what you save",
+	"version": "0.0.1",
+	"publisher": "lhy",
+	"engines": {
+		"vscode": "^1.40.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:snippets.edit_custom_snip",
+		"onCommand:snippets.import_snip_file_url",
+		"onLanguage:lua"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "snippets.edit_custom_snip",
+				"title": "edit custom snip"
+			},
+			{
+				"command": "snippets.import_snip_file_url",
+				"title": "import snip file url"
+			}
+		],
+		"snippets": [
+			{
+				"language": "lua",
+				"path": "./custom/snippets_cfg.json"
+			}
+		],
+		"menus": {
+            "editor/context": [
+                {
+                    "when": "editorFocus",
+                    "command": "snippets.edit_custom_snip",
+                    "group": "navigation"
+				},
+				{
+                    "when": "editorFocus",
+                    "command": "snippets.import_snip_file_url",
+                    "group": "navigation"
+                }
+            ]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "snip_json_url",
+			"properties": {
+				"snippets.json_custom_url": {
+					"type": "string",
+					"default": "put your custom snip_config json file url,  multiple paths use ';' separate",
+					"description": "可放入你自定义的snip配置json文件全路径,多个路径用;隔开"
+				},
+				"snippets.save_custom_limit_time": {
+                    "type": "number",
+                    "default": 1500,
+                    "description": "custom_cfg Save time limit, The snip configuration will be refreshed every time when save is successful"
+                }
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.40.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.0",
+		"@types/node": "^14.0.27",
+		"eslint": "^7.9.0",
+		"@typescript-eslint/eslint-plugin": "^4.1.1",
+		"@typescript-eslint/parser": "^4.1.1",
+		"glob": "^7.1.6",
+		"mocha": "^8.1.3",
+		"typescript": "^4.0.2",
+		"vscode-test": "^1.4.0"
+	}
+}
