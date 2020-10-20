@@ -2,7 +2,7 @@
 	"name": "snippets",
 	"displayName": "snippets_wrapper",
 	"description": "get what you save",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "lhy",
 	"engines": {
 		"vscode": "^1.40.0"
@@ -34,18 +34,18 @@
 			}
 		],
 		"menus": {
-            "editor/context": [
-                {
-                    "when": "editorFocus",
-                    "command": "snippets.edit_custom_snip",
-                    "group": "navigation"
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "snippets.edit_custom_snip",
+					"group": "navigation"
 				},
 				{
-                    "when": "editorFocus",
-                    "command": "snippets.import_snip_file_url",
-                    "group": "navigation"
-                }
-            ]
+					"when": "editorFocus",
+					"command": "snippets.import_snip_file_url",
+					"group": "navigation"
+				}
+			]
 		},
 		"configuration": {
 			"type": "object",
@@ -57,10 +57,10 @@
 					"description": "可放入你自定义的snip配置json文件全路径,多个路径用;隔开"
 				},
 				"snippets.save_custom_limit_time": {
-                    "type": "number",
-                    "default": 1500,
-                    "description": "custom_cfg Save time limit, The snip configuration will be refreshed every time when save is successful"
-                }
+					"type": "number",
+					"default": 1500,
+					"description": "custom_cfg Save time limit, The snip configuration will be refreshed every time when save is successful"
+				}
 			}
 		}
 	},
