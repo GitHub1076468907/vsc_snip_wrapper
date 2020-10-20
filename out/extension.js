@@ -16,6 +16,7 @@ function readAndWriteAllJson(path_list, num) {
         return;
     }
     var item = path_list[num];
+    console.log("write item :" + item);
     //现将json文件读出来
     fs.readFile(item, function (err, data) {
         if (err) {
@@ -23,6 +24,7 @@ function readAndWriteAllJson(path_list, num) {
             return;
         }
         var person = data.toString(); //将二进制的数据转换为字符串
+        console.log("write stpersonr :" + person);
         person = JSON.parse(person);
         for (var js2 in person) {
             res_json[js2] = person[js2];
@@ -30,12 +32,13 @@ function readAndWriteAllJson(path_list, num) {
         num = num + 1;
         if (num >= path_list.length) {
             var str = JSON.stringify(res_json, null, 2); //因为nodejs的写入文件只认识字符串或者二进制数，所以把json对象转换成字符串重新写入json文件中
+            console.log("write str :" + str);
             fs.writeFile(directoryPath, str, function (err) {
                 if (err) {
                     vscode.window.showErrorMessage(err.message);
                     return;
                 }
-                vscode.window.showInformationMessage('restart vscode to active snip change');
+                vscode.window.showInformationMessage('restart vscode to active snip change！！！！！！！！！！！！');
             });
         }
         else {
@@ -63,8 +66,47 @@ function writeJson(setting_path) {
             path_list.push(tmp);
         }
     }
-    console.log("path_list", path_list);
     readAndWriteAllJson(path_list, 0);
+}
+var watch_dict = new Map();
+var watch_json_set;
+//watch bind setting json url change
+function WatchSetJson() {
+    var file_dict = new Map();
+    var port = vscode.workspace.getConfiguration("snippets").get('json_custom_url');
+    if (port != undefined) {
+        var arr = port.toString().split(";");
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] != "") {
+                const tmp = fillter_pre_url(path.resolve(arr[i]));
+                file_dict.set(tmp, 1);
+            }
+        }
+    }
+    for (let k of watch_dict.keys()) {
+        if (!file_dict.has(k)) {
+            watch_dict.get(k).unwatch(k);
+            watch_dict.get(k).close();
+        }
+        else {
+            //此时的文件已经在监视中,把它清掉，剩余的就是还没有被监视的
+            file_dict.delete(k);
+        }
+    }
+    for (let k of file_dict.keys()) {
+        WatchJson(k);
+    }
+}
+//监视该文件， 以及把返回值加到watch_dict 中 ，key是url， val 是 watch返回值
+function WatchJson(url) {
+    var watch = chokidar.watch(url);
+    watch.on('raw', (event, path) => {
+        vscode.window.showInformationMessage('start update_snip_cfg');
+        //配置变化的时候再变更一下
+        const port = vscode.workspace.getConfiguration("snippets").get('json_custom_url');
+        writeJson(port);
+    });
+    watch_dict.set(url, watch);
 }
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -104,6 +146,8 @@ function activate(context) {
             //配置变化的时候再变更一下
             const port = vscode.workspace.getConfiguration("snippets").get('json_custom_url');
             writeJson(port);
+            //配置变更也要重新检视文件
+            WatchSetJson();
         }
     });
     //监听配置变化
@@ -129,9 +173,17 @@ function activate(context) {
         const port = vscode.workspace.getConfiguration("snippets").get('json_custom_url');
         writeJson(port);
     });
+    //也监听一下绑定的文件变化
+    WatchSetJson();
 }
 exports.activate = activate;
 // this method is called when your extension is deactivated
-function deactivate() { }
+function deactivate() {
+    for (let k of watch_dict.keys()) {
+        watch_dict.get(k).unwatch(k);
+        watch_dict.get(k).close();
+    }
+    watch_dict.clear();
+}
 exports.deactivate = deactivate;
 //# sourceMappingURL=extension.js.map

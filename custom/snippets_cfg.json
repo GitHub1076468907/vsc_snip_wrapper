@@ -1222,6 +1222,13 @@
     ],
     "description": "tencent_manager.lua require pos"
   },
+  "theme_activity_manager": {
+    "prefix": "theme_activity_manager",
+    "body": [
+      "require 'GameManager/theme_activity_manager'"
+    ],
+    "description": "theme_activity_manager.lua require pos"
+  },
   "tili_manager": {
     "prefix": "tili_manager",
     "body": [
@@ -1466,6 +1473,97 @@
       "require 'GameUI/Activity/win_blindboxpreview'"
     ],
     "description": "win_blindboxpreview.lua require pos"
+  },
+  "ctrl_themeactivitybanner": {
+    "prefix": "ctrl_themeactivitybanner",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivitybanner'"
+    ],
+    "description": "ctrl_themeactivitybanner.lua require pos"
+  },
+  "ctrl_themeactivitycostitem": {
+    "prefix": "ctrl_themeactivitycostitem",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivitycostitem'"
+    ],
+    "description": "ctrl_themeactivitycostitem.lua require pos"
+  },
+  "ctrl_themeactivitycostlist": {
+    "prefix": "ctrl_themeactivitycostlist",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivitycostlist'"
+    ],
+    "description": "ctrl_themeactivitycostlist.lua require pos"
+  },
+  "ctrl_themeactivityexchangeitem": {
+    "prefix": "ctrl_themeactivityexchangeitem",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivityexchangeitem'"
+    ],
+    "description": "ctrl_themeactivityexchangeitem.lua require pos"
+  },
+  "ctrl_themeactivityexchangelist": {
+    "prefix": "ctrl_themeactivityexchangelist",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivityexchangelist'"
+    ],
+    "description": "ctrl_themeactivityexchangelist.lua require pos"
+  },
+  "ctrl_themeactivitylotteryitem": {
+    "prefix": "ctrl_themeactivitylotteryitem",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivitylotteryitem'"
+    ],
+    "description": "ctrl_themeactivitylotteryitem.lua require pos"
+  },
+  "ctrl_themeactivitytaskitem": {
+    "prefix": "ctrl_themeactivitytaskitem",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivitytaskitem'"
+    ],
+    "description": "ctrl_themeactivitytaskitem.lua require pos"
+  },
+  "ctrl_themeactivitytasklist": {
+    "prefix": "ctrl_themeactivitytasklist",
+    "body": [
+      "require 'GameUI/ActivityTheme/ctrl_themeactivitytasklist'"
+    ],
+    "description": "ctrl_themeactivitytasklist.lua require pos"
+  },
+  "win_themeactcost": {
+    "prefix": "win_themeactcost",
+    "body": [
+      "require 'GameUI/ActivityTheme/win_themeactcost'"
+    ],
+    "description": "win_themeactcost.lua require pos"
+  },
+  "win_themeactexchange": {
+    "prefix": "win_themeactexchange",
+    "body": [
+      "require 'GameUI/ActivityTheme/win_themeactexchange'"
+    ],
+    "description": "win_themeactexchange.lua require pos"
+  },
+  "win_themeactivity": {
+    "prefix": "win_themeactivity",
+    "body": [
+      "require 'GameUI/ActivityTheme/win_themeactivity'"
+    ],
+    "description": "win_themeactivity.lua require pos"
+  },
+  "win_themeactlottery": {
+    "prefix": "win_themeactlottery",
+    "body": [
+      "require 'GameUI/ActivityTheme/win_themeactlottery'"
+    ],
+    "description": "win_themeactlottery.lua require pos"
+  },
+  "win_themeacttask": {
+    "prefix": "win_themeacttask",
+    "body": [
+      "require 'GameUI/ActivityTheme/win_themeacttask'"
+    ],
+    "description": "win_themeacttask.lua require pos"
   },
   "ctrl_dvinationbranch": {
     "prefix": "ctrl_dvinationbranch",
@@ -2475,13 +2573,6 @@
     ],
     "description": "ctrl_weeklyitem.lua require pos"
   },
-  "win_awardpreview": {
-    "prefix": "win_awardpreview",
-    "body": [
-      "require 'GameUI/BattlePass/win_awardpreview'"
-    ],
-    "description": "win_awardpreview.lua require pos"
-  },
   "win_battlepassallaward": {
     "prefix": "win_battlepassallaward",
     "body": [
@@ -3287,6 +3378,13 @@
     ],
     "description": "ctrl_itemcount.lua require pos"
   },
+  "ctrl_itemlist": {
+    "prefix": "ctrl_itemlist",
+    "body": [
+      "require 'GameUI/CtrlCommon/ctrl_itemlist'"
+    ],
+    "description": "ctrl_itemlist.lua require pos"
+  },
   "ctrl_itemname": {
     "prefix": "ctrl_itemname",
     "body": [
@@ -3384,6 +3482,13 @@
       "require 'GameUI/CtrlRare/ctrl_awardbox'"
     ],
     "description": "ctrl_awardbox.lua require pos"
+  },
+  "ctrl_awardboxnum": {
+    "prefix": "ctrl_awardboxnum",
+    "body": [
+      "require 'GameUI/CtrlRare/ctrl_awardboxnum'"
+    ],
+    "description": "ctrl_awardboxnum.lua require pos"
   },
   "ctrl_buynum": {
     "prefix": "ctrl_buynum",
@@ -5002,6 +5107,34 @@
     ],
     "description": "win_maingirlclick.lua require pos"
   },
+  "ctrl_friendaward": {
+    "prefix": "ctrl_friendaward",
+    "body": [
+      "require 'GameUI/Manor/ctrl_friendaward'"
+    ],
+    "description": "ctrl_friendaward.lua require pos"
+  },
+  "ctrl_friendprog": {
+    "prefix": "ctrl_friendprog",
+    "body": [
+      "require 'GameUI/Manor/ctrl_friendprog'"
+    ],
+    "description": "ctrl_friendprog.lua require pos"
+  },
+  "ctrl_friendrecorditem": {
+    "prefix": "ctrl_friendrecorditem",
+    "body": [
+      "require 'GameUI/Manor/ctrl_friendrecorditem'"
+    ],
+    "description": "ctrl_friendrecorditem.lua require pos"
+  },
+  "ctrl_lvdesp": {
+    "prefix": "ctrl_lvdesp",
+    "body": [
+      "require 'GameUI/Manor/ctrl_lvdesp'"
+    ],
+    "description": "ctrl_lvdesp.lua require pos"
+  },
   "ctrl_manorcatitem": {
     "prefix": "ctrl_manorcatitem",
     "body": [
@@ -5009,12 +5142,33 @@
     ],
     "description": "ctrl_manorcatitem.lua require pos"
   },
+  "ctrl_manorfriendhead": {
+    "prefix": "ctrl_manorfriendhead",
+    "body": [
+      "require 'GameUI/Manor/ctrl_manorfriendhead'"
+    ],
+    "description": "ctrl_manorfriendhead.lua require pos"
+  },
+  "ctrl_manorfrienditem": {
+    "prefix": "ctrl_manorfrienditem",
+    "body": [
+      "require 'GameUI/Manor/ctrl_manorfrienditem'"
+    ],
+    "description": "ctrl_manorfrienditem.lua require pos"
+  },
   "ctrl_manorhome": {
     "prefix": "ctrl_manorhome",
     "body": [
       "require 'GameUI/Manor/ctrl_manorhome'"
     ],
     "description": "ctrl_manorhome.lua require pos"
+  },
+  "ctrl_manorinviteitem": {
+    "prefix": "ctrl_manorinviteitem",
+    "body": [
+      "require 'GameUI/Manor/ctrl_manorinviteitem'"
+    ],
+    "description": "ctrl_manorinviteitem.lua require pos"
   },
   "ctrl_manormap": {
     "prefix": "ctrl_manormap",
@@ -5037,6 +5191,13 @@
     ],
     "description": "ctrl_selectseed.lua require pos"
   },
+  "win_friendmanor": {
+    "prefix": "win_friendmanor",
+    "body": [
+      "require 'GameUI/Manor/win_friendmanor'"
+    ],
+    "description": "win_friendmanor.lua require pos"
+  },
   "win_manorbag": {
     "prefix": "win_manorbag",
     "body": [
@@ -5050,6 +5211,20 @@
       "require 'GameUI/Manor/win_manorcat'"
     ],
     "description": "win_manorcat.lua require pos"
+  },
+  "win_manorfriend": {
+    "prefix": "win_manorfriend",
+    "body": [
+      "require 'GameUI/Manor/win_manorfriend'"
+    ],
+    "description": "win_manorfriend.lua require pos"
+  },
+  "win_manorfriendinvite": {
+    "prefix": "win_manorfriendinvite",
+    "body": [
+      "require 'GameUI/Manor/win_manorfriendinvite'"
+    ],
+    "description": "win_manorfriendinvite.lua require pos"
   },
   "win_manorinfo": {
     "prefix": "win_manorinfo",
@@ -5078,6 +5253,13 @@
       "require 'GameUI/Manor/win_manoruplevel'"
     ],
     "description": "win_manoruplevel.lua require pos"
+  },
+  "win_waterrecord": {
+    "prefix": "win_waterrecord",
+    "body": [
+      "require 'GameUI/Manor/win_waterrecord'"
+    ],
+    "description": "win_waterrecord.lua require pos"
   },
   "ctrl_catmanager": {
     "prefix": "ctrl_catmanager",
@@ -5135,6 +5317,13 @@
     ],
     "description": "win_manordiyformuladetail.lua require pos"
   },
+  "win_manordiyjusttest": {
+    "prefix": "win_manordiyjusttest",
+    "body": [
+      "require 'GameUI/ManorDIY/win_manordiyjusttest'"
+    ],
+    "description": "win_manordiyjusttest.lua require pos"
+  },
   "win_manordiymain": {
     "prefix": "win_manordiymain",
     "body": [
@@ -5155,6 +5344,41 @@
       "require 'GameUI/ManorDIY/win_manordiymakeformulaselect'"
     ],
     "description": "win_manordiymakeformulaselect.lua require pos"
+  },
+  "win_manordiymaketest": {
+    "prefix": "win_manordiymaketest",
+    "body": [
+      "require 'GameUI/ManorDIY/win_manordiymaketest'"
+    ],
+    "description": "win_manordiymaketest.lua require pos"
+  },
+  "win_manordiytestjus111": {
+    "prefix": "win_manordiytestjus111",
+    "body": [
+      "require 'GameUI/ManorDIY/win_manordiytestjus111'"
+    ],
+    "description": "win_manordiytestjus111.lua require pos"
+  },
+  "win_manordiytestjus3333": {
+    "prefix": "win_manordiytestjus3333",
+    "body": [
+      "require 'GameUI/ManorDIY/win_manordiytestjus3333'"
+    ],
+    "description": "win_manordiytestjus3333.lua require pos"
+  },
+  "win_manordiytestjust": {
+    "prefix": "win_manordiytestjust",
+    "body": [
+      "require 'GameUI/ManorDIY/win_manordiytestjust'"
+    ],
+    "description": "win_manordiytestjust.lua require pos"
+  },
+  "win_manordiytestjust222": {
+    "prefix": "win_manordiytestjust222",
+    "body": [
+      "require 'GameUI/ManorDIY/win_manordiytestjust222'"
+    ],
+    "description": "win_manordiytestjust222.lua require pos"
   },
   "ctrl_btnmemoryaward": {
     "prefix": "ctrl_btnmemoryaward",
@@ -6402,6 +6626,13 @@
     ],
     "description": "ctrl_rankitem.lua require pos"
   },
+  "ctrl_rushranksubitems": {
+    "prefix": "ctrl_rushranksubitems",
+    "body": [
+      "require 'GameUI/RushRank/ctrl_rushranksubitems'"
+    ],
+    "description": "ctrl_rushranksubitems.lua require pos"
+  },
   "ctrl_rushrankwayitem": {
     "prefix": "ctrl_rushrankwayitem",
     "body": [
@@ -6415,6 +6646,13 @@
       "require 'GameUI/RushRank/ctrl_starrankitem'"
     ],
     "description": "ctrl_starrankitem.lua require pos"
+  },
+  "ctrl_starranksubitem": {
+    "prefix": "ctrl_starranksubitem",
+    "body": [
+      "require 'GameUI/RushRank/ctrl_starranksubitem'"
+    ],
+    "description": "ctrl_starranksubitem.lua require pos"
   },
   "win_famous": {
     "prefix": "win_famous",
@@ -7717,5 +7955,12 @@
       "require 'uuid'"
     ],
     "description": "uuid.lua require pos"
+  },
+  "glist_wrapper222222444444": {
+    "prefix": "glist_wrapper31111",
+    "body": [
+      "require 'Core/GUI/Wrapper/glist_wrapper'"
+    ],
+    "description": "glist_wrapper.lua require pos"
   }
 }

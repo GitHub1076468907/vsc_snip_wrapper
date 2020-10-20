@@ -1,3 +1,4 @@
+import { AnyRecord } from 'dns';
 import { close } from 'inspector';
 import path = require('path');
 // The module 'vscode' contains the VS Code extensibility API
@@ -5,7 +6,7 @@ import path = require('path');
 import * as vscode from 'vscode';
 
 var fs = require('fs');
-const chokidar = require('chokidar')
+const chokidar = require('chokidar');
 
 const json_str = {snip_demo :{"prefix": "","body": [],"description":"" }};
 var tmp = JSON.stringify(json_str);
@@ -17,13 +18,15 @@ function readAndWriteAllJson(path_list: any, num: number){
 		return;
 	}
 	var item = path_list[num];
+	console.log("write item :" + item)
 	//现将json文件读出来
     fs.readFile(item, function (err: any, data: { toString: () => any; }) {
         if (err) {
 			vscode.window.showErrorMessage(err.message);
 			return;
         }
-        var person = data.toString(); //将二进制的数据转换为字符串
+		var person = data.toString(); //将二进制的数据转换为字符串
+		console.log("write stpersonr :" + person)
         person = JSON.parse(person);
         for (var js2 in person) {
             res_json[js2] = person[js2];
@@ -31,12 +34,13 @@ function readAndWriteAllJson(path_list: any, num: number){
         num = num + 1;
         if (num >= path_list.length) {
             var str = JSON.stringify(res_json, null, 2); //因为nodejs的写入文件只认识字符串或者二进制数，所以把json对象转换成字符串重新写入json文件中
-            fs.writeFile(directoryPath, str, function (err: any) {
+			console.log("write str :" + str)
+			fs.writeFile(directoryPath, str, function (err: any) {
                 if (err) {
 					vscode.window.showErrorMessage(err.message);
 					return;
                 }
-                vscode.window.showInformationMessage('restart vscode to active snip change');
+                vscode.window.showInformationMessage('restart vscode to active snip change！！！！！！！！！！！！');
             });
         }
         else {
@@ -66,8 +70,51 @@ function writeJson(setting_path: any){
 			path_list.push(tmp);
 		}
 	}
-	console.log("path_list",path_list);
 	readAndWriteAllJson(path_list, 0);
+}
+
+var watch_dict = new Map();
+var watch_json_set: { close: () => void; } | null;
+//watch bind setting json url change
+function WatchSetJson(){
+	var file_dict = new Map();
+	var port : string | undefined  = vscode.workspace.getConfiguration("snippets")!.get<string>('json_custom_url');
+	if (port != undefined){
+		var arr = port.toString().split(";");
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i] != ""){
+				const tmp = fillter_pre_url(path.resolve(arr[i]));
+				file_dict.set(tmp, 1);
+			}
+		}
+	}
+
+	for(let k of watch_dict.keys()){
+		if(!file_dict.has(k)){
+			watch_dict.get(k).unwatch(k);
+			watch_dict.get(k).close();
+		}
+		else{
+			//此时的文件已经在监视中,把它清掉，剩余的就是还没有被监视的
+			file_dict.delete(k)
+		}
+	}
+
+	for(let k of file_dict.keys()){
+		WatchJson(k);
+	}
+
+}
+//监视该文件， 以及把返回值加到watch_dict 中 ，key是url， val 是 watch返回值
+function WatchJson(url: String){
+	var watch =  chokidar.watch(url)
+	watch.on('raw', (event: any, path: any ) => {//监听除了ready, raw, and error之外所有的事件类型
+		vscode.window.showInformationMessage('start update_snip_cfg');
+		//配置变化的时候再变更一下
+		const port = vscode.workspace.getConfiguration("snippets").get<string>('json_custom_url');
+		writeJson(port);
+	});
+	watch_dict.set(url, watch);
 }
 
 
@@ -119,6 +166,8 @@ export function activate(context: vscode.ExtensionContext) {
 		  	//配置变化的时候再变更一下
 			const port = vscode.workspace.getConfiguration("snippets").get<string>('json_custom_url');
 			writeJson(port);
+			//配置变更也要重新检视文件
+			WatchSetJson()
 	  }
 	});
 
@@ -148,7 +197,15 @@ export function activate(context: vscode.ExtensionContext) {
 		writeJson(port);
 	});
 
+	//也监听一下绑定的文件变化
+	WatchSetJson()
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+	for(let k of watch_dict.keys()){
+		watch_dict.get(k).unwatch(k);
+		watch_dict.get(k).close();
+	}
+	watch_dict.clear();
+}
