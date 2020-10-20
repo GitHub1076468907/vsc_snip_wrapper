@@ -2,7 +2,7 @@
 	"name": "snippets",
 	"displayName": "snippets_wrapper",
 	"description": "get what you save",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "lhy",
 	"engines": {
 		"vscode": "^1.40.0"
