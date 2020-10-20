@@ -18,7 +18,6 @@ function readAndWriteAllJson(path_list: any, num: number){
 		return;
 	}
 	var item = path_list[num];
-	console.log("write item :" + item)
 	//现将json文件读出来
     fs.readFile(item, function (err: any, data: { toString: () => any; }) {
         if (err) {
@@ -26,7 +25,6 @@ function readAndWriteAllJson(path_list: any, num: number){
 			return;
         }
 		var person = data.toString(); //将二进制的数据转换为字符串
-		console.log("write stpersonr :" + person)
         person = JSON.parse(person);
         for (var js2 in person) {
             res_json[js2] = person[js2];
@@ -34,13 +32,12 @@ function readAndWriteAllJson(path_list: any, num: number){
         num = num + 1;
         if (num >= path_list.length) {
             var str = JSON.stringify(res_json, null, 2); //因为nodejs的写入文件只认识字符串或者二进制数，所以把json对象转换成字符串重新写入json文件中
-			console.log("write str :" + str)
 			fs.writeFile(directoryPath, str, function (err: any) {
                 if (err) {
 					vscode.window.showErrorMessage(err.message);
 					return;
                 }
-                vscode.window.showInformationMessage('restart vscode to active snip change！！！！！！！！！！！！');
+                vscode.window.showInformationMessage('restart vscode to active snip change');
             });
         }
         else {
